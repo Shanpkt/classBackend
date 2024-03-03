@@ -3,6 +3,7 @@ const app = express();
 const PORT =  3000;
 let cors = require("cors");
 const connectDB = require('./db');
+const User = require('./schema');
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(
@@ -17,10 +18,11 @@ let users = [
 ];
 
 // Create a new user
-app.post('/formData', (req, res) => {
+app.post('/formData',async (req, res) => {
   const newUser = req.body;
  // users.push(newUser);
-  res.send(newUser);
+       const data = await User.create(newUser)
+  res.send(data);
 });
 
 app.get('/', (req, res) => {
