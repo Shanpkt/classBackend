@@ -1,9 +1,14 @@
 const express = require('express');
 const app = express();
 const PORT =  3000;
-
+let cors = require("cors");
 // Middleware to parse JSON bodies
 app.use(express.json());
+app.use(
+    cors({
+        origin:"https://classinfo.vercel.app"
+    })
+)
 
 let users = [
   { id: 1, name: 'John Doe' },
@@ -14,7 +19,7 @@ let users = [
 app.post('/formData', (req, res) => {
   const newUser = req.body;
  // users.push(newUser);
-  res.status("i recived the data");
+  res.send("i recived the data");
 });
 
 app.get('/', (req, res) => {
