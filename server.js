@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const PORT =  3000;
 let cors = require("cors");
+const connectDB = require('./db');
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(
@@ -19,7 +20,7 @@ let users = [
 app.post('/formData', (req, res) => {
   const newUser = req.body;
  // users.push(newUser);
-  res.send("i recived the data");
+  res.send(newUser);
 });
 
 app.get('/', (req, res) => {
@@ -29,6 +30,7 @@ app.get('/', (req, res) => {
   });
 
 // Start the server
-app.listen(PORT, () => {
+app.listen(PORT,async () => {
+   await  connectDB()
   console.log(`Server is running on port ${PORT}`);
 });
