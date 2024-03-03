@@ -11,10 +11,10 @@ let users = [
 ];
 
 // Create a new user
-app.post('/api/users', (req, res) => {
+app.post('/formData', (req, res) => {
   const newUser = req.body;
-  users.push(newUser);
-  res.status(201).json(newUser);
+ // users.push(newUser);
+  res.status("i recived the data");
 });
 
 app.get('/', (req, res) => {
